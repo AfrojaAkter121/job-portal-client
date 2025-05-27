@@ -1,6 +1,6 @@
 import React, { use } from 'react';
 import { FaGithub, FaGoogle } from 'react-icons/fa';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../Contex/AuthContext';
 import { updateProfile } from 'firebase/auth';
 import { auth } from '../Firebase/firebase.config';
@@ -8,6 +8,8 @@ import Google from '../shared/Google';
 
 const Register = () => {
     const {createUser} = use(AuthContext)
+    const navigate = useNavigate();
+
     const handleSubmit = e => {
         e.preventDefault()
         const form = e.target;
@@ -22,7 +24,8 @@ const Register = () => {
         createUser(email, password)
         .then(res => {
             console.log(res.user)
-
+            // navigate to the previous page or home page
+            navigate('/', { replace: true });
             updateProfile(auth.currentUser, {
                 displayName: name,
                 photoURL: photo

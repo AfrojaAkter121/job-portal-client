@@ -60,7 +60,7 @@ const JobCard = ({ job }) => {
         </span>
         <Link to={`/jobs/${_id}`}>
         <button className="bg-red-100 text-red-400 px-4 py-2 rounded-xl font-medium hover:bg-blue-200 transition">
-          Apply Now
+          See More
         </button>
         </Link>
       </div>

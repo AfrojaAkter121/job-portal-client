@@ -6,15 +6,17 @@ import { GoogleAuthProvider } from 'firebase/auth';
 
 
 const AuthProvider = ({children}) => {
-    const [loading , setLoading] = useState(false)
+    const [loading , setLoading] = useState(true)
     const [user , setUser] = useState(null)
 
     // register user
     const createUser = (email , password) => {
+        setLoading(true);
         return createUserWithEmailAndPassword(auth, email, password);
     }
     // login User
     const loginUser = (email, password) => {
+        setLoading(true);
         return signInWithEmailAndPassword(auth, email, password)
     }
     // google 

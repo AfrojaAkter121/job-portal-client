@@ -21,18 +21,11 @@ const Navbar = () => {
       <NavLink className="" to="/">
         Home
       </NavLink>
-      <NavLink className="" to="/">
-        Home
-      </NavLink>
-      <NavLink className="" to="/">
-        Home
-      </NavLink>
-      <NavLink className="" to="/">
-        Home
-      </NavLink>
-      <NavLink className="" to="/">
-        Home
-      </NavLink>
+      {
+        user && <>
+        <NavLink className="" to="/myApplications">My Application</NavLink>
+        </>
+      }
     </div>
   );
 

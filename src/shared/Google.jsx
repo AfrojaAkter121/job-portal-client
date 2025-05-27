@@ -1,13 +1,18 @@
 import React, { use } from 'react';
 import { FaGoogle } from 'react-icons/fa';
 import { AuthContext } from '../Contex/AuthContext';
+import { useLocation, useNavigate } from 'react-router';
 
 const Google = () => {
     const {googleAccount} = use(AuthContext)
+    const location = useLocation();
+    const navigate = useNavigate();
+
     const handleAccount = () => {
         googleAccount()
         .then(res => {
             console.log(res.user)
+            navigate(`${location.state || "/"}`, { replace: true });
         }).catch(err => {
             console.log(err.message)
         })

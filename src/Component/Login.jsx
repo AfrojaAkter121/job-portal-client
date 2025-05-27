@@ -1,27 +1,32 @@
 import React, { use } from "react";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Contex/AuthContext";
 import Google from "../shared/Google";
 
 const Login = () => {
-    const {loginUser} = use(AuthContext)
+  const { loginUser } = use(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const form = e.target ;
+    const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
 
     loginUser(email, password)
-    .then(res => {
-        console.log(res.user)
-    }).catch(err => {
-        console.log(err.message)
-    })
-    
+      .then((res) => {
+        console.log(res.user);
+        // navigate to the previous page or home page
+        navigate(`${location.state || "/"}`, { replace: true });
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
 
+    form.reset();
   };
 
   return (
@@ -32,7 +37,6 @@ const Login = () => {
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-4">
-          
           {/* email */}
           <input
             type="email"
